@@ -1,5 +1,6 @@
 ﻿using HB.MVCAPP2.Models;
 using Microsoft.AspNetCore.Mvc;
+using System.Reflection.Metadata.Ecma335;
 using System.Text.Json;
 
 namespace HB.MVCAPP2.Controllers
@@ -52,11 +53,80 @@ namespace HB.MVCAPP2.Controllers
 
             }
 
+
+
             list.Add(user);
-            TempData["SignUpStatus"]="Başarılı";
+            TempData["SignUpStatus"]="Başarılı"+" kullanıcı token : "+ user.Token+ " ";
             return Redirect("/home/index");
         }
 
+        public  IActionResult PasswordForget()
+        {
+            return View();
+
+        }
+        [HttpPost]
+        public IActionResult PasswordForget(PasswordForgetViewModel vm)
+        {
+
+            var user =  list.Where(x => x.Email == vm.Email && vm.Token == x.Token).FirstOrDefault();
+
+
+            if (user != null)
+            {
+                TempData["userEmail"] = user.Email;
+
+                return RedirectToAction(nameof(PasswordUpdate));
+            }
+
+            TempData["message"] = "bu bilgilerle uyuşan bir kullancı yok"; 
+            return Redirect("/home/index");
+
+        }
+
+        public IActionResult PasswordUpdate()
+        {
+
+            if (TempData["userEmail"] != null)
+            {
+                var email =  TempData["userEmail"].ToString();
+
+
+                return View(new PasswordUpdateViewModel() { Email = email }); ;
+            }
+
+
+            TempData["message"] = "izinsiz bir giriş denemesi";
+            return Redirect("/home/index");
+
+
+
+        }
+
+        [HttpPost]
+        public IActionResult PasswordUpdate(PasswordUpdateViewModel vm)
+        {
+
+           var user =  list.Where(x => x.Email == vm.Email).FirstOrDefault();
+
+
+            AppUser appUser = new();
+
+            appUser = user;
+            int token =  appUser.Token = new Random().Next(1000, 10000);
+
+            list.Remove(user);
+            list.Add(appUser);
+
+            TempData["newToken"] = token;
+
+
+
+            return Redirect("/home/index");
+            
+
+
+        }
 
 
     }

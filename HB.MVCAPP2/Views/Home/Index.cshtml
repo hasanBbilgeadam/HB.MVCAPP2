@@ -10,3 +10,19 @@
         <h2 class="text-center">@TempData["SignUpStatus"]!.ToString()</h2>
     }
 }
+
+@{
+    if (TempData["message"] != null)
+    {
+        <h2 class="text-center">@TempData["message"]!.ToString()</h2>
+    }
+}
+@{
+    if (TempData["newToken"] != null)
+    {
+        <h1>şifre update başarılı şekilde oldu</h1>
+        <h2>yeni tokeniniz ile artık işlem yapabilirisniz</h2>
+        <h2 class="text-center">@TempData["newToken"]!.ToString()</h2>
+    }
+}
+
