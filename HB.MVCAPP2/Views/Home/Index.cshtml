@@ -1,0 +1,12 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+
+
+@{
+    if (TempData["SignUpStatus"] != null)
+    {
+        <h2 class="text-center">@TempData["SignUpStatus"]!.ToString()</h2>
+    }
+}
