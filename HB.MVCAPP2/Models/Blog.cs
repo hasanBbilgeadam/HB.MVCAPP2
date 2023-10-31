@@ -17,6 +17,7 @@
     public class Comment
     {
 
+        public int BlogId { get; set; }
         public int Id { get; set; }
         public DateTime CommentDate { get; set; }
         public string CommentContent { get; set; }
