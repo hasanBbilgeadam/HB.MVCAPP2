@@ -1,0 +1,36 @@
+﻿
+@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+
+@model List<Comment>
+
+
+
+
+
+
+<div class="row">
+
+    @{
+
+        <div class="mb-3">
+            
+            <h4 class="text-center">Recent Comments</h4>
+        </div>
+        @foreach (var item in Model)
+        {
+
+            <div class="mx-auto col-md-10 p-3 border hover shadow mb-2">
+
+
+                <h2 class="text-center">@(item.CommentContent + " " + item.CommentDate.ToString("MM/dd/yyyy H:mm"))</h2>
+                
+            </div>
+
+        }
+
+    }
+
+</div>

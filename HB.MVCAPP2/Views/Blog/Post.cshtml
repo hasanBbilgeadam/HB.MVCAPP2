@@ -21,6 +21,36 @@
         </p>
 
 
+        <div class="row">
+
+            @{
+                foreach (var item in Model.Comments)
+                {
+                    <div class="col-md-8 mx-auto border p-3 mb-2 shadow-sm">
+
+                        <h4 class="text-center">@item.Id</h4>
+                        <h5 class="text-center text-danger">@item.CommentDate.ToString()</h5>
+                        
+                        <p class="text-center ">@item.CommentContent</p>
+
+                    </div>
+                }
+
+
+                <form class="mt-2" asp-action="CommentAdd" method="post">
+
+
+                    <input type="hidden" name="blogId" value="@Model.Id" />
+                    <textarea class="form-control" name="CommentContent" rows="3"></textarea>
+
+                    <button class="btn btn-success">Add Comment</button>
+
+                </form>
+            }
+
+        </div>
+
+
     </div>
     @*recent blog area*@
     <div class="col-md-4 border vh-50">
@@ -28,6 +58,9 @@
 
 
         <partial name="~/views/shared/RecentBlogPartial.cshtml" model="(List<Blog>)ViewBag.recentBlogs" />
+        <partial name="~/views/shared/_RecentCommentsPartial.cshtml" model="(List<Comment>)ViewBag.recentComments" />
+
+
 
 
     </div>

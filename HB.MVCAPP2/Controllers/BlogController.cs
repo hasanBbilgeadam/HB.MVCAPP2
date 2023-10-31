@@ -1,5 +1,7 @@
 ﻿using HB.MVCAPP2.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
+using System.ComponentModel;
 
 namespace HB.MVCAPP2.Controllers
 {
@@ -19,7 +21,7 @@ namespace HB.MVCAPP2.Controllers
                 {
 
                       new(){ Id = 105,CommentContent="comment xx",BlogId=2,CommentDate = DateTime.Now.AddDays(-1)},
-                    new(){ Id = 106,CommentContent="comment xx",BlogId=2,CommentDate = DateTime.Now.AddHours(-1)},
+                    new(){ Id = 106,CommentContent="comment xx",BlogId=2,CommentDate = DateTime.Now.AddHours(-5)},
                     new(){ Id = 107,CommentContent="comment xx",BlogId=2,CommentDate = DateTime.Now.AddHours(-222)},
 
                 },
@@ -32,9 +34,9 @@ namespace HB.MVCAPP2.Controllers
                     Comments = new()
                 {
 
-                      new(){ Id = 201,CommentContent="comment xx",BlogId=3,CommentDate = DateTime.Now.AddDays(-1)},
+                      new(){ Id = 201,CommentContent="comment xx",BlogId=3,CommentDate = DateTime.Now.AddDays(-3)},
                     new(){ Id = 202,CommentContent="comment xx",BlogId=3,CommentDate = DateTime.Now.AddHours(-101)},
-                    new(){ Id = 203,CommentContent="comment xx",BlogId=3,CommentDate = DateTime.Now.AddHours(-1)},
+                    new(){ Id = 203,CommentContent="comment xx",BlogId=3,CommentDate = DateTime.Now.AddHours(-4)},
 
                 },
             },
@@ -46,9 +48,9 @@ namespace HB.MVCAPP2.Controllers
                     Comments = new()
                 {
 
-                      new(){ Id = 500,CommentContent="comment xx",BlogId=4,CommentDate = DateTime.Now.AddDays(-1)},
+                      new(){ Id = 500,CommentContent="comment xx",BlogId=4,CommentDate = DateTime.Now.AddDays(-6)},
                     new(){ Id = 501,CommentContent="comment xx",BlogId=4,CommentDate = DateTime.Now.AddMinutes(-10)},
-                    new(){ Id = 503,CommentContent="comment xx",BlogId=4,CommentDate = DateTime.Now.AddHours(-222)},
+                    new(){ Id = 503,CommentContent="comment xx",BlogId=4,CommentDate = DateTime.Now.AddHours(-221)},
 
                 },
             }
@@ -66,8 +68,36 @@ namespace HB.MVCAPP2.Controllers
 
             ViewBag.recentBlogs = blogList.Where(x => x.Id != id).ToList();
 
+            var comments = blogList.Select(x => x.Comments).ToList();
 
+            List<Comment> result = new();
+            foreach (var item in comments)
+            {
+                result.AddRange(item);
+            }
+
+            result =  result.OrderByDescending(x => x.CommentDate).ToList();
+
+            ViewBag.recentComments = result.Take(3).ToList();
             return View(data);
+        }
+
+
+        [HttpPost]
+        public IActionResult CommentAdd(int blogId, string CommentContent)
+        {
+
+            var num = new Random().Next(1000, 20000000);
+            var blog =   blogList.Where(x => x.Id == blogId).FirstOrDefault();
+            blogList.Remove(blog);
+            blog.Comments.Add(new Comment() {Id=num, CommentContent = CommentContent, BlogId = blogId, CommentDate = DateTime.Now });
+            blogList.Add(blog);
+
+
+
+
+            return RedirectToAction(nameof(Post), new { id=blogId});
+
         }
     }
 }
