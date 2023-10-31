@@ -1,0 +1,36 @@
+﻿
+@{
+    ViewData["Title"] = "Post";
+}
+
+
+@model Blog
+
+<div class="row">
+
+    @*current blog content*@
+    <div class="col-md-8 border p-3 vh-50">
+
+        <h2 class="text-center mb-2">@(Model.Header + " "+Model.Id)</h2>
+
+        <img class="  d-flex justify-content-center mb-2 mx-auto" src="@Model.ImagePath" />
+        <p class="border text-center p-3">
+
+            @Model.Content
+
+        </p>
+
+
+    </div>
+    @*recent blog area*@
+    <div class="col-md-4 border vh-50">
+
+
+
+        <partial name="~/views/shared/RecentBlogPartial.cshtml" model="(List<Blog>)ViewBag.recentBlogs" />
+
+
+    </div>
+
+
+</div>

@@ -1,0 +1,27 @@
+﻿
+
+
+
+@model List<Blog>
+
+
+<div class="row">
+
+    @{
+        
+        <div class="mb-3"></div>
+        @foreach (var item in Model)
+        {
+
+            <div class="mx-auto col-md-10 p-3 border hover shadow mb-2">
+
+            <a class="text-decoration-none" asp-action="Post" asp-controller="Blog"  asp-route-id="@item.Id">
+                <h2 class="text-center" >@(item.Header +" "+ item.Id)</h2>
+            </a>
+            </div>
+
+        }
+
+    }
+
+</div>

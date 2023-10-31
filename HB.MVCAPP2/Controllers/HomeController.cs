@@ -16,8 +16,25 @@ namespace HB.MVCAPP2.Controllers
         public IActionResult Index()
         {
 
-           
-            return View();
+
+            var list = new List<AppUser>()
+            {
+
+                new(){Name="a", Email="hasdasd@gmail.com",UserName="asd"},
+                new(){Name="a", Email="hasdasd@gmail.com",UserName="asd"},
+                new(){Name="a", Email="hasdasd@gmail.com",UserName="asd"},
+                new(){Name="a", Email="hasdasd@gmail.com",UserName="asd"},
+                new(){Name="a", Email="hasdasd@gmail.com",UserName="asd"},
+                new(){Name="a", Email="hasdasd@gmail.com",UserName="asd"},
+                new(){Name="a", Email="hasdasd@gmail.com",UserName="asd"},
+                new(){Name="a", Email="hasdasd@gmail.com",UserName="asd"},
+                new(){Name="a", Email="hasdasd@gmail.com",UserName="asd"},
+                new(){Name="a", Email="hasdasd@gmail.com",UserName="asd"},
+            
+            };
+
+            ViewBag.users = list;
+            return View(list);
         }
 
         public IActionResult Privacy()
