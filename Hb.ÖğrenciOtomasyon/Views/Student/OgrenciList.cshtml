@@ -1,0 +1,62 @@
+﻿
+@{
+    ViewData["Title"] = "OgrenciList";
+}
+
+@model List<Student>
+
+<h2 lass="text-center">Öğrenci Listes,</h2>
+
+
+
+<div class="container">
+
+    <div class="row">
+
+        <div class="col-10 mx-auto">
+
+            <table class="table">
+
+                <thead>
+                    <tr>
+                        <th>ad</th>
+                        <th>soyad</th>
+                        <th>sınıf</th>
+                        <th>cinsiyet</th>
+                        <th>Profil</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    @{
+
+
+                        foreach (var item in Model)
+                        {
+                            
+                            <tr>
+                                <td>@item.Name</td>
+                                <td>@item.SurName</td>
+                                <td>@Enum.GetName(typeof(Gender),item.Gender)</td>
+                                <td>@Enum.GetName(typeof(ClassLevel),item.ClassLevel)</td>
+                                <td>
+                                
+                                    <button class="btn btn-success">
+                                        Profile Git
+                                    </button>
+                                </td>
+                            </tr>
+
+                        }
+                    }
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+</div>
+

@@ -1,0 +1,64 @@
+﻿using Hb.ÖğrenciOtomasyon.Models;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+
+namespace Hb.ÖğrenciOtomasyon.Controllers
+{
+    public class StudentController : Controller
+    {
+
+        public static List<Student> sList = new();
+        public IActionResult Index()
+        {
+
+            return View();
+        }
+
+        public IActionResult OgrenciKayit()
+        {
+
+
+
+            ViewBag.Genders = new List<SelectListItem>()
+            {
+
+                new(){ Text = "kadın",Value="1"},
+                new(){ Text = "Erkek",Value="2"},
+
+
+            }; 
+            ViewBag.ClassLevels = new List<SelectListItem>()
+            {
+
+                new(){ Text = "9",Value="9"},
+                new(){ Text = "10",Value="10"},
+                new(){ Text = "11",Value="11"},
+                new(){ Text = "12",Value="12"},
+
+
+            };
+
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult OgrenciKayit(Student vm)
+        {
+
+
+            sList.Add(vm);
+
+
+
+
+            return RedirectToAction(nameof(OgrenciList));
+
+        }
+
+        public IActionResult OgrenciList()
+        {
+            return View(sList);
+        }
+
+    }
+}

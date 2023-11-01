@@ -1,0 +1,22 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+
+@model TestModel
+<h1>Index</h1>
+
+
+
+<form asp-action="TestModelRegister">
+
+    <input  asp-for="Name" />
+    <input  asp-for="Id" />
+
+    <select asp-for="MultiData" asp-items="@ViewBag.MultiData">
+
+    </select>
+
+    <button type="submit">ok</button>
+
+</form>

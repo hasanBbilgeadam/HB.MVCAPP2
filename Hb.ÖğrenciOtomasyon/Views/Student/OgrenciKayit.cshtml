@@ -1,0 +1,30 @@
+﻿
+@{
+    ViewData["Title"] = "OgrenciKayit";
+}
+
+@model Student
+<h1>OgrenciKayit</h1>
+
+
+
+<form asp-action="OgrenciKayit" method="post">
+
+
+    <input  class="form-control" asp-for="Name" />
+    <input  class="form-control" asp-for="SurName" />
+
+
+    <select class="form-select" asp-for="Gender" asp-items="ViewBag.Genders">
+        <option selected>Bir Cinsiyet Seçin</option>
+    </select>
+
+
+    <select class="form-select" asp-for="ClassLevel" asp-items="ViewBag.ClassLevels">
+        <option selected>Bir Snıf Seçin</option>
+    </select>
+
+    <button type="submit" class="btn btn-outline-primary">
+        Kayıt Et
+    </button>
+</form>
