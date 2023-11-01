@@ -142,8 +142,11 @@ namespace HB.MVCAPP2.Controllers
             var data= blogList.Skip((id-1)*2).Take(2).ToList();
 
             ViewBag.CurrentPage = id;
-            ViewBag.BlogCount = blogList.Count;
 
+            var pageCount =  blogList.Count / 2;
+            if (blogList.Count % 2 == 1) ++pageCount;
+
+            ViewBag.pageCount = pageCount;
 
 
 

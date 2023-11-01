@@ -29,24 +29,62 @@
 
 
             }
-       }
-
-
-       @*
-
-       currentpage number =4
-            
-           page count =  blog count  /2
-
-            kalanı var  count++
-
-
-            -1-    -2-   -3-    *-4-*
-            
+        }
 
 
 
-       *@
+
+
+        <div>
+
+            <nav aria-label="Page navigation example">
+                <ul class="pagination">
+
+
+                    @if ((int)ViewBag.CurrentPage != 1)
+                    {
+                        <li class="page-item">
+                            <a class="page-link" asp-action="Index" asp-route-id="@((int)ViewBag.CurrentPage-1)" aria-label="Next">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+
+
+
+                    }
+                  
+                    @for (int i = 1; i <= (int)ViewBag.pageCount; i++)
+                    {
+                        <li class="page-item">
+
+                            @{
+                                string color = i == (int)ViewBag.CurrentPage ? "bg-danger" : " ";
+                            }
+                            <a class="page-link @color"      asp-action="Index" asp-route-id="@i" >@i</a>
+                            
+                        </li>
+                    }
+
+
+
+                    @if (ViewBag.pageCount != ViewBag.CurrentPage)
+                    {
+
+
+                        <li class="page-item">
+                            <a class="page-link" asp-action="Index" asp-route-id="@((int)ViewBag.CurrentPage+ 1)" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+
+                    }
+
+                    
+                </ul>
+            </nav>
+
+
+       </div>
 
     </div>
 </div>
