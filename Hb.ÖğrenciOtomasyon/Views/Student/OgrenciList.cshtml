@@ -41,10 +41,10 @@
                                 <td>@Enum.GetName(typeof(Gender),item.Gender)</td>
                                 <td>@Enum.GetName(typeof(ClassLevel),item.ClassLevel)</td>
                                 <td>
-                                
-                                    <button class="btn btn-success">
+
+                                    <a class="btn btn-success" asp-action="SinavEkle" asp-route-id="@item.Id">
                                         Profile Git
-                                    </button>
+                                    </a>
                                 </td>
                             </tr>
 

@@ -60,5 +60,48 @@ namespace Hb.ÖğrenciOtomasyon.Controllers
             return View(sList);
         }
 
+
+        public IActionResult SinavEkle(int id)
+        {
+            var data =  sList.Where(x => x.Id == id).FirstOrDefault();
+
+            var AllExam = sList.Where(x => x.Id == id).Select(x => x.Examps).FirstOrDefault();
+
+            ViewBag.AllExamp = AllExam;
+
+            ViewBag.SinavTür = new List<SelectListItem>()
+            {
+                new(){Text="birinci sınav",Value="1"},
+                new(){Text="ikinci sınav",Value="2"},
+            };
+            ViewBag.Ders = new List<SelectListItem>()
+            {
+                new(){Text="Türke",Value="1"},
+                new(){Text="Matematik",Value="2"},
+            };
+
+            ViewBag.Id = id;
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult SinavEkle(Examp examp, int id)
+        {
+
+
+            var data = sList.Where(x => x.Id == id).FirstOrDefault();
+
+            sList.Remove(data);
+
+
+            data.Examps.Add(examp);
+
+            sList.Add(data);
+
+
+            return RedirectToAction("OgrenciList");
+
+            
+        }
     }
 }

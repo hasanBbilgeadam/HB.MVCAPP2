@@ -30,9 +30,26 @@
 
     }
 
+    public enum Ders
+    {
+        Türkçe=1,
+        Matematik=2,
+
+    }
+    public enum SınavTür
+    {
+        BirinciSınav=1,
+        İkinciSınav=2,
+
+
+    }
     public class  Examp
     {
         public int Not { get; set; }
+
+        public Ders Ders { get; set; }
+        public SınavTür SınavTür { get; set; }
+
 
     }
 }

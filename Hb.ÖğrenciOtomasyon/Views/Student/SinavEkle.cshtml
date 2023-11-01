@@ -1,0 +1,66 @@
+﻿
+@{
+    ViewData["Title"] = "SinavEkle";
+}
+
+
+@model Examp
+
+<div class="container">
+
+
+    <div class="row">
+
+        
+        <div class="col-md-6 border p-3">
+        
+            <form asp-action="SinavEkle" method="post">
+
+
+                <input type="hidden" name="id" value="@ViewBag.Id" />
+
+                <select class="form-select mb-2" asp-items="ViewBag.SinavTür">
+                    <option value="disabled selected>Bir Sınav Türü Seçin"></option>
+                </select>
+
+
+                <select class="form-select mb-2" asp-items="ViewBag.Ders">
+                    <option value="disabled selected>Bir Ders Seçin"></option>
+                </select>
+
+
+                <input class="form-control mb-2" asp-for="Not"  placeholder="sınav notu girişniz"/>
+
+
+                <button type="submit" class="btn btn-danger">Not Ekle</button>
+               
+
+
+            </form>
+
+
+        </div>
+
+
+        <div class="col-md-6 border p-3">
+        
+                <ul>
+
+            @foreach (var item in ViewBag.AllExamp as List<Examp>)
+            {
+                    <li>
+                        @((int)item.Ders+ "   ders")
+                        @(item.Ders+ "   ders")
+                        @((Enum.GetName(typeof(Ders), item.Ders)) + " " + (Enum.GetName(typeof(SınavTür), item.SınavTür)) + " not : "+ item.Not.ToString())
+                       
+                    </li>
+            }
+                </ul>
+
+
+        </div>
+
+
+    </div>
+
+</div>
