@@ -41,6 +41,78 @@ namespace HB.MVCAPP2.Controllers
                 },
             },
                new(){
+                Id = 5,
+                Content="example blog content , example blog content, example blog content",
+                Header="blog header",
+                ImagePath="https://picsum.photos/id/1/200/300",
+                    Comments = new()
+                {
+
+                      new(){ Id = 600,CommentContent="comment xx",BlogId=4,CommentDate = DateTime.Now.AddDays(-6)},
+                    new(){ Id = 601,CommentContent="comment xx",BlogId=4,CommentDate = DateTime.Now.AddMinutes(-10)},
+                    new(){ Id = 603,CommentContent="comment xx",BlogId=4,CommentDate = DateTime.Now.AddHours(-221)},
+
+                },
+
+
+
+
+        },
+               new(){
+                Id = 8,
+                Content="example blog content , example blog content, example blog content",
+                Header="blog header",
+                ImagePath="https://picsum.photos/id/1/200/300",
+                    Comments = new()
+                {
+
+                      new(){ Id = 800,CommentContent="comment xx",BlogId=4,CommentDate = DateTime.Now.AddDays(-6)},
+                    new(){ Id = 801,CommentContent="comment xx",BlogId=4,CommentDate = DateTime.Now.AddMinutes(-10)},
+                    new(){ Id = 803,CommentContent="comment xx",BlogId=4,CommentDate = DateTime.Now.AddHours(-221)},
+
+                },
+
+
+
+
+        },      
+              new(){
+                Id = 411,
+                Content="example blog content , example blog content, example blog content",
+                Header="blog header",
+                ImagePath="https://picsum.photos/id/1/200/300",
+                    Comments = new()
+                {
+
+                      new(){ Id = 1500,CommentContent="comment xx",BlogId=4,CommentDate = DateTime.Now.AddDays(-6)},
+                    new(){ Id = 1501,CommentContent="comment xx",BlogId=4,CommentDate = DateTime.Now.AddMinutes(-10)},
+                    new(){ Id = 1503,CommentContent="comment xx",BlogId=4,CommentDate = DateTime.Now.AddHours(-221)},
+
+                },
+
+
+
+
+        },
+              new(){
+                Id = 4123,
+                Content="example blog content , example blog content, example blog content",
+                Header="blog header",
+                ImagePath="https://picsum.photos/id/1/200/300",
+                    Comments = new()
+                {
+
+                      new(){ Id = 67678,CommentContent="comment xx",BlogId=4,CommentDate = DateTime.Now.AddDays(-6)},
+                    new(){ Id = 76,CommentContent="comment xx",BlogId=4,CommentDate = DateTime.Now.AddMinutes(-10)},
+                    new(){ Id = 678,CommentContent="comment xx",BlogId=4,CommentDate = DateTime.Now.AddHours(-221)},
+
+                },
+
+
+
+
+        },   
+            new(){
                 Id = 4,
                 Content="example blog content , example blog content, example blog content",
                 Header="blog header",
@@ -53,14 +125,29 @@ namespace HB.MVCAPP2.Controllers
                     new(){ Id = 503,CommentContent="comment xx",BlogId=4,CommentDate = DateTime.Now.AddHours(-221)},
 
                 },
-            }
+
+
+
+
+        },
+
+
+
 
         };
-        public IActionResult Index()
+        public IActionResult Index(int id =1)
         {
 
+            //blog/index/1
+            var data= blogList.Skip((id-1)*2).Take(2).ToList();
 
-            return View();
+            ViewBag.CurrentPage = id;
+            ViewBag.BlogCount = blogList.Count;
+
+
+
+
+            return View(data);
         }
         public IActionResult Post(int id)
         {
@@ -80,6 +167,7 @@ namespace HB.MVCAPP2.Controllers
 
             ViewBag.recentComments = result.Take(3).ToList();
             return View(data);
+            
         }
 
 

@@ -1,0 +1,52 @@
+﻿@model List<Blog>
+
+
+<div class="container">
+
+    <div class="row">
+
+        
+       @{
+
+           foreach (var item in Model)
+            {
+                
+
+                <div class="col-md-8 border mb-2 p-3 shadow">
+
+
+                    <h2 class="text-center mb-2">@(item.Header + " " + item.Id)</h2>
+
+                    <img class="  d-flex justify-content-center mb-2 mx-auto" src="@item.ImagePath" />
+                    <p class="border text-center p-3">
+
+                        @item.Content
+
+                    </p>
+
+
+                </div>
+
+
+            }
+       }
+
+
+       @*
+
+       currentpage number =4
+            
+           page count =  blog count  /2
+
+            kalanı var  count++
+
+
+            -1-    -2-   -3-    *-4-*
+            
+
+
+
+       *@
+
+    </div>
+</div>
