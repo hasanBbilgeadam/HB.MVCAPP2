@@ -1,0 +1,65 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+
+
+
+<button  id ="btnData" class="btn btn-primary">
+
+    get data
+
+</button>
+
+
+
+<div class="row">
+
+    <div id ="box1" class="col-md-10 mx-auto border">
+
+
+
+    </div>
+
+</div>
+
+
+
+@section Scripts
+{
+
+
+    <script>
+
+
+        $(function () {
+
+
+            $('#btnData').on('click', function () {
+
+
+                $.get('/test/GetData', function (data) {
+
+
+                    console.log(data);
+
+
+                    $('#box1').append(data);
+
+                    // $('#box1').show();
+
+
+                })
+
+
+
+            });
+
+        });
+
+
+    </script>
+}

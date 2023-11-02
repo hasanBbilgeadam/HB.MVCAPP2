@@ -13,7 +13,6 @@ namespace Hb.ÖğrenciOtomasyon.Controllers
 
             return View();
         }
-
         public IActionResult OgrenciKayit()
         {
 
@@ -40,7 +39,6 @@ namespace Hb.ÖğrenciOtomasyon.Controllers
 
             return View();
         }
-
         [HttpPost]
         public IActionResult OgrenciKayit(Student vm)
         {
@@ -54,13 +52,10 @@ namespace Hb.ÖğrenciOtomasyon.Controllers
             return RedirectToAction(nameof(OgrenciList));
 
         }
-
         public IActionResult OgrenciList()
         {
             return View(sList);
         }
-
-
         public IActionResult SinavEkle(int id)
         {
             var data =  sList.Where(x => x.Id == id).FirstOrDefault();
@@ -83,11 +78,20 @@ namespace Hb.ÖğrenciOtomasyon.Controllers
             ViewBag.Id = id;
             return View();
         }
-
         [HttpPost]
         public IActionResult SinavEkle(Examp examp, int id)
         {
 
+
+
+            var ders =   int.Parse(Request.Form["Ders"].ToString());
+
+            var dersEnum = (Ders)ders;
+
+            Console.WriteLine("ders enumm  "+Enum.GetName(typeof(Ders),dersEnum));
+
+            
+          
 
             var data = sList.Where(x => x.Id == id).FirstOrDefault();
 
@@ -98,10 +102,12 @@ namespace Hb.ÖğrenciOtomasyon.Controllers
 
             sList.Add(data);
 
-
+            
             return RedirectToAction("OgrenciList");
 
             
         }
+
+
     }
 }

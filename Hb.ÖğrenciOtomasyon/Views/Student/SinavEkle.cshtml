@@ -19,12 +19,12 @@
 
                 <input type="hidden" name="id" value="@ViewBag.Id" />
 
-                <select class="form-select mb-2" asp-items="ViewBag.SinavTür">
+                <select class="form-select mb-2" asp-for="SınavTür"  asp-items="ViewBag.SinavTür">
                     <option value="disabled selected>Bir Sınav Türü Seçin"></option>
                 </select>
 
 
-                <select class="form-select mb-2" asp-items="ViewBag.Ders">
+                <select class="form-select mb-2" asp-for="Ders" asp-items="ViewBag.Ders">
                     <option value="disabled selected>Bir Ders Seçin"></option>
                 </select>
 
@@ -49,10 +49,15 @@
             @foreach (var item in ViewBag.AllExamp as List<Examp>)
             {
                     <li>
-                        @((int)item.Ders+ "   ders")
-                        @(item.Ders+ "   ders")
-                        @((Enum.GetName(typeof(Ders), item.Ders)) + " " + (Enum.GetName(typeof(SınavTür), item.SınavTür)) + " not : "+ item.Not.ToString())
+                        
+                        @{
+
+                            var dersAdı = Enum.GetName(typeof(Ders), item.Ders);
+                            var sınavAdı = Enum.GetName(typeof(SınavTür), item.SınavTür);
+
+                        }
                        
+                        @(dersAdı+ " "+ sınavAdı+" "+item.Not)
                     </li>
             }
                 </ul>
