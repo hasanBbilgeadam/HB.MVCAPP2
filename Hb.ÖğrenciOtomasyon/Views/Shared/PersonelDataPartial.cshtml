@@ -1,0 +1,19 @@
+﻿@model Personel
+
+
+@if (Model == null)
+{
+    <h2 class="text-danger">Personel Bulunamadı</h2>
+}
+
+else
+{
+
+    <div class="bg-danger bg-gradient">
+        <ul class="text-white fw-bold">
+            <li>@Model.Id</li>
+            <li>@Model.Ad</li>
+            <li>@Model.SoyAd</li>
+        </ul>
+    </div>
+}

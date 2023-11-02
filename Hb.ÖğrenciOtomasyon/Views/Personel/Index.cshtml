@@ -1,0 +1,51 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<h2 class="mb-2 text-center">Personel Arama Sayfası</h2>
+
+
+<input type="number" class="form-control" id="IdPersonel" />
+<button id="btnSearch" class="btn  btn-primary"> Ara</button>
+
+
+<br />
+<hr />
+<br />
+
+<div class="row mt-2">
+    <div id="searchResult" class="col-mb-10 p-3 shadow">
+
+    </div>
+</div>
+
+
+
+@section Scripts{
+
+    <script>
+
+        $(function () {
+
+
+            $('#btnSearch').on('click', function () {
+
+               var inputData = $('#IdPersonel').val();
+                var url = '/Personel/GetPersonelData/'+inputData;
+
+                $.get(url, function (data) {
+
+                    $('#searchResult').empty();
+                    $('#searchResult').append(data);
+                })
+
+            });
+
+
+        });
+
+    </script>
+
+}

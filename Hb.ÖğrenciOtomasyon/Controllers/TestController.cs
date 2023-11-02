@@ -25,6 +25,7 @@ namespace Hb.ÖğrenciOtomasyon.Controllers
 
         public IActionResult Index()
         {
+            
             return View();
         }
 

@@ -1,0 +1,26 @@
+﻿@{
+    ViewData["Title"] = "LendProduct";
+}
+
+
+<div class="container">
+    <div class="row">
+
+        <div class="col-md-10 mx-auto border p-3">
+
+            <form asp-action="LendProduct" method="post">
+
+                <select class="form-select" name="personelId" asp-items="ViewBag.personelListModel">
+                    <option value="disabled selected">Bir Personel Seçin"</option>
+                </select> 
+                
+                <select class="form-select" name="productId" asp-items="ViewBag.ÜrünListModel">
+                    <option value="disabled selected">Bir Ürün Seçin"</option>
+                </select>
+
+                <button type="submit" class="btn btn-danger">Ürün Ekle</button>
+            </form>
+
+        </div>
+    </div>
+</div>

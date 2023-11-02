@@ -1,0 +1,36 @@
+﻿
+@{
+    ViewData["Title"] = "AddProduct";
+}
+
+@model Product
+
+
+<div class="container">
+
+    <div class="row">
+
+        <div class="col-8 mx-auto shadow">
+
+
+            <form asp-action="AddProduct" class="p-3 border" method="post">
+
+                @**@
+                <input class="form-control mb-2" asp-for="Adı" placeholder="ürün adı" />
+
+                <select class="form-select mb2" asp-for="Kategori" asp-items="ViewBag.kategoriList">
+                    <option selected disabled>Bir Kategori Seçin</option>
+                </select>
+
+
+                <button class="btn btn-success" type="submit">
+                    Ürün Ekle
+                </button>
+
+            </form>
+
+
+        </div>
+    </div>
+
+</div>

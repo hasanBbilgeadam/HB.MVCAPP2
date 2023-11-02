@@ -1,0 +1,35 @@
+﻿@{
+    ViewData["Title"] = "List";
+}
+
+@model List<Product>
+
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Adı</th>
+            <th>Verilme Tarih</th>
+            <th>Personelde Mi</th>
+            <th>Category</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @{
+            foreach (var item in Model)
+            {
+                <tr>
+                    
+                <td>@item.Id</td>
+                <td>@item.Adı</td>
+                <td>@(item.VerilmeTarihi.HasValue ? item.VerilmeTarihi.Value.ToString() :" veri yok")</td>
+                <td>@(item.PersoneldeMi?"personelde":"envanterde")</td>
+                <td>@(Enum.GetName(typeof(Kategori),item.Kategori))</td>
+                </tr>
+            }
+        }
+
+    </tbody>
+</table>
