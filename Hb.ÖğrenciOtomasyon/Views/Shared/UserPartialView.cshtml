@@ -1,0 +1,23 @@
+﻿
+@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+@model Person
+
+
+@if (Model != null)
+{
+    
+
+<ul class="list-group">
+    <li class="list-group-item">@Model.ID</li>
+    <li class="list-group-item">@Model.Name</li>
+    <li class="list-group-item">@DateTime.Now.ToString()</li>
+    </ul>
+}
+else
+{
+    
+    <h2 class="text-danger">böyle biri yog</h2>
+}

@@ -14,19 +14,28 @@
 
 </button>
 
-
-
 <div class="row">
 
-    <div id ="box1" class="col-md-10 mx-auto border">
 
-
-
+    <div id="box1" class="col-md-10 mx-auto border">
     </div>
 
 </div>
 
 
+<hr class="mb-5"/>
+
+<input id="userID" type="number" class="form-control" placeholder="name" />
+
+<button id="btnSearch">Search</button>
+
+
+<div class="row">
+    <div id="searchResult" class="col-md-10 mx-auto p-3">
+
+
+    </div>
+</div>
 
 @section Scripts
 {
@@ -58,6 +67,28 @@
 
             });
 
+            $('#btnSearch').on('click',function(){
+
+
+                var inputData = $('#userID').val();
+
+                if(inputData == "")
+                {
+                    alert("ıd boş bırakılamaz");
+                    return ;
+                }
+
+                var url = '/test/GetUserById/'+inputData;
+
+                $.get(url,function(data){
+
+                    $('#searchResult').empty();
+                    $('#searchResult').append(data);
+
+                })
+
+
+            })
         });
 
 
